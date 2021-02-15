@@ -1,0 +1,30 @@
+:root {
+  --color-primary: #2584ff;
+  --color-secondary: #00d9ff;
+  --color-accent: #ff3400;
+  --color-body: #918ca4;
+  --color-headings: #1b0760;
+  --color-border: #ccc;
+  --border-radius: 30px;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: inter, Arial, Helvetica, sans-serif;
+  font-size: 2.4rem;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/*Headers*/
+
+/*Footers*/
+
+/*Main */
