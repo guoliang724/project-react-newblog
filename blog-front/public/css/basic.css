@@ -2,9 +2,10 @@
   --color-primary: #2584ff;
   --color-secondary: #00d9ff;
   --color-accent: #ff3400;
-  --color-body: #918ca4;
-  --color-headings: #1b0760;
+  --color-body: #cac2d0;
+  --color-headings: #e7717d;
   --color-border: #ccc;
+  --color-bg: #e7717d;
   --border-radius: 30px;
 }
 
@@ -15,6 +16,8 @@ html {
 body {
   font-family: inter, Arial, Helvetica, sans-serif;
   font-size: 2.4rem;
+  background: url("../../src/images/bg.jpg");
+  position: relative;
 }
 
 *,

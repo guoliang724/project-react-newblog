@@ -1,0 +1,22 @@
+.blogcard{
+    width: 100%;
+    height: 20rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    overflow: hidden;
+    border-bottom: transparent;
+}
+.card-cover{
+   width: 100%;
+   height: 10rem;
+   object-fit:fill;
+ 
+}
+.card-data{
+    text-align: center;
+    background-image: linear-gradient(to right, #e6f7ff, #e6fffb);
+    border-bottom-right-radius:1rem ;
+    border-bottom-left-radius: 1rem;
+    display: flex;
+    justify-content:space-around;
+}

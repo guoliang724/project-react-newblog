@@ -1,0 +1,31 @@
+.header {
+  width: 100%;
+  height: 5rem;
+  background-image: linear-gradient(to right, #e7717d, #d9f7be);
+  color: white;
+  font-size: 2.1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.header-nav {
+  height: 100%;
+  display: flex;
+}
+.header-nav li {
+  margin-right: 2rem;
+  line-height: 5rem;
+}
+
+.header-nav:first-child {
+  margin-left: 15rem;
+}
+
+.searchbar {
+  align-self: center;
+  font-size: 1.5rem;
+  margin-right: 15rem;
+}
+
+.ant-input-group-addon button.ant-btn-primary.ant-input-search-button {
+  background: #afd275;
+}
