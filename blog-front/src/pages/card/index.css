@@ -5,6 +5,7 @@
     border-top-right-radius: 1rem;
     overflow: hidden;
     border-bottom: transparent;
+    border: 0px solid transparent;
 }
 .card-cover{
    width: 100%;
@@ -19,4 +20,5 @@
     border-bottom-left-radius: 1rem;
     display: flex;
     justify-content:space-around;
+    
 }

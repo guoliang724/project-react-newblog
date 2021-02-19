@@ -1,0 +1,9 @@
+
+  .everyday {
+    height: 12rem;
+    border-bottom: 1px solid rgba(227, 227, 227, 1);
+  }
+  .card-list{
+      margin-top: 5rem;
+      border-radius: 1rem;
+  }

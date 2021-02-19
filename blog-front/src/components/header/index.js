@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Input } from "antd";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 export default class Header extends Component {
   onSearch = () => {};
@@ -8,11 +9,21 @@ export default class Header extends Component {
     return (
       <div className="header">
         <ul className="header-nav">
-          <li>Liang'blog | Tech blogs</li>
-          <li>Home</li>
-          <li>Map</li>
-          <li>About</li>
-          <li>Message</li>
+          <li>
+            <Link to="/home/">Liang'blog | Tech blogs</Link>
+          </li>
+          <li>
+            <Link to="/home/">Home</Link>
+          </li>
+          <li>
+            <Link to="/map">Map</Link>
+          </li>
+          <li>
+            <Link to="/home/about">About</Link>
+          </li>
+          <li>
+            <Link to="/home/message">Message</Link>
+          </li>
         </ul>
         <div className="searchbar">
           <Input.Search

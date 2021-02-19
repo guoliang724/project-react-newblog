@@ -15,6 +15,9 @@
   margin-right: 2rem;
   line-height: 5rem;
 }
+.header-nav li a {
+  color: inherit;
+}
 
 .header-nav:first-child {
   margin-left: 15rem;
