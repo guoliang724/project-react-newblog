@@ -24,3 +24,11 @@
 .avatarcontent .reply{
     margin-right: 2rem;
 }
+.reply-children{
+    margin-top: 1rem;
+    margin-left:1rem;
+    width: 90%;
+}
+.reply-button{
+
+}

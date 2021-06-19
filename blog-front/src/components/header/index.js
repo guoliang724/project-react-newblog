@@ -29,7 +29,8 @@ export default class Header extends Component {
           <Input.Search
             placeholder="keyword"
             enterButton="Search"
-            soze="large"
+            size="middle"
+            bordered={false}
             onSearch={this.onSearch}
           ></Input.Search>
         </div>
