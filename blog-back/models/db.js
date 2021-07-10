@@ -2,14 +2,19 @@ const { Sequelize } = require("sequelize");
 const config = require("config");
 
 const sequelize = new Sequelize(
-  "my_blog",
+  "project_blog",
   config.get("User.username"),
   config.get("User.password"),
   {
     host: config.get("User.host"),
     dialect: "mysql",
+    logging: null,
   }
 );
+
+module.exports = sequelize;
+//test
+/*
 (async () => {
   try {
     await sequelize.authenticate();
@@ -18,3 +23,4 @@ const sequelize = new Sequelize(
     console.error("Unable to connect to the database:", error);
   }
 })();
+*/
