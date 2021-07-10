@@ -1,10 +1,33 @@
-
+ .blog-area{
+   background-color: white;
+   border-radius: 1rem;
+   padding: 2.5rem;
+   padding-top: 0.6rem;
+ }
   .everyday {
     height: 13rem;
     border-bottom: 1px solid rgba(227, 227, 227, 1);
   }
   .card-list{
-      margin-top: 5rem;
+      margin-top: 2rem;
       border-radius: 1rem;
       background: rgba(0,0,0,0);
   }
+  .forSpinning{
+
+  text-align: center;
+  margin-left: 45%;
+  border-radius: 4px;
+  }
+  .forSpinning{
+
+    text-align: center;
+    margin-left: 45%;
+    border-radius: 4px;
+    }
+
+    .loading{
+      text-align: center;
+      margin-left: 45%;
+      border-radius: 4px;
+    }
