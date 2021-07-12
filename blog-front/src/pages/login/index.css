@@ -1,0 +1,14 @@
+.loginForm{
+    width: 50rem;
+    border-radius: 0.5rem;
+    margin: 10rem auto;
+    box-shadow: inset 0px -1px 1px rgb(0 0 0 / 30%);
+    padding: 2rem;
+    font-size: 1.6rem;
+}
+.loginButton{
+    display: block;
+    width: 80%;
+    margin: 1rem auto;
+    
+}

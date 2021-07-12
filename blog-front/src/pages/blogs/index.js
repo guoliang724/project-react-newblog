@@ -2,7 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import { Tag, Divider, Spin } from "antd";
 import BlogCard from "../card";
 import "./index.css";
-import { getSentence, getBlogList } from "../../api/request";
+import {
+  getSentence,
+  getBlogList,
+  getBlogListWithPage,
+} from "../../api/request";
+import {
+  DownCircleTwoTone,
+  SmileTwoTone,
+  setTwoToneColor,
+} from "@ant-design/icons";
+
+setTwoToneColor("#06f");
 
 export default function Blogs() {
   const scrollRaf = useRef();
@@ -19,16 +30,11 @@ export default function Blogs() {
   //spinning control(blog list)
   const [blogSpin, setblogSpin] = useState(false);
 
-  //controlling scroll
-  function controlScroll() {
-    if (scrollRaf.current.scrollHeight) {
-      var distance =
-        scrollRaf.current.scrollHeight -
-        document.documentElement.scrollTop -
-        document.documentElement.clientHeight;
-      console.log("distance", distance);
-    }
-  }
+  //page control
+  const [page, setpage] = useState(1);
+
+  //nodata indicator
+  const [noData, setnoData] = useState(false);
 
   //daily update
   useEffect(() => {
@@ -43,23 +49,32 @@ export default function Blogs() {
     }
     updateEachHour();
     var timer = setInterval(updateEachHour, 1000 * 6 * 60); //update each hour
-    window.addEventListener("scroll", controlScroll);
+
     return clearInterval(timer);
   }, []);
 
   //get blog list information
   useEffect(() => {
     (async () => {
-      var result = await getBlogList();
-
+      setblogSpin(true);
+      var result = await getBlogListWithPage(page);
+      //var result = await getBlogList();
       if (result.data.status === 1) {
         //status==1 success
         var blogs = result.data.data;
-
-        setblogList(blogs);
+        if (!blogs) {
+          setnoData(true);
+          setblogSpin(false);
+          return;
+        } //reach to the bottom, no more page
+        setTimeout(() => {
+          console.log(blogs);
+          setblogList([...blogList, ...blogs]);
+          setblogSpin(false);
+        }, 2000);
       }
     })();
-  }, []);
+  }, [page]);
 
   return (
     <div className="blog-area" ref={scrollRaf}>
@@ -79,7 +94,34 @@ export default function Blogs() {
         ))}
 
         <Spin size="large" className="loading" spinning={blogSpin} />
+        {noData ? (
+          <div style={{ textAlign: "center" }}>
+            <SmileTwoTone
+              twoToneColor="#06f"
+              style={{ fontSize: "2.5rem", margin: "auto" }}
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
+
+      {blogSpin || noData ? (
+        ""
+      ) : (
+        <button
+          className="nextButton"
+          onClick={() => {
+            setpage(page + 1);
+            console.log("button-page", page);
+          }}
+        >
+          <DownCircleTwoTone
+            twoToneColor="#06f"
+            style={{ fontSize: "2.5rem" }}
+          />
+        </button>
+      )}
     </div>
   );
 }

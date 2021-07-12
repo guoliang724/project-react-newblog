@@ -31,3 +31,8 @@
       margin-left: 45%;
       border-radius: 4px;
     }
+    .nextButton{
+      border: none;
+      background-color: transparent;
+    
+    }

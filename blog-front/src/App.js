@@ -13,6 +13,7 @@ export default function App() {
       <Switch>
         <Route path="/map" component={Map} />
         <Route path="/home/" component={Home} />
+
         <Redirect to="/home/" />
       </Switch>
       <Footer />

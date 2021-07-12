@@ -26,18 +26,19 @@
 }
 .card-action{
     padding: 1rem 0;
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
+   
 }
 
 .card-action button{
     display: inline-block;
     text-align: center;
-    background: none;
-    border: 1px solid;
     border-radius: 3px;
     font-size: 1.4rem;
-    margin-right: 2rem;
     cursor: pointer;
+    border: none; 
+    background-color: transparent;
+    margin-right: 1rem;
 }
 .card-action >span{
     color: #8590a6;

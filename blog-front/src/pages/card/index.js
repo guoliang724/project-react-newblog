@@ -1,7 +1,7 @@
 import { Card, Avatar, h2 } from "antd";
 import "./index.css";
 import React, { Component } from "react";
-import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { HeartTwoTone } from "@ant-design/icons";
 
 export default class BlogCard extends Component {
   state = {
@@ -22,10 +22,10 @@ export default class BlogCard extends Component {
           <div className="card-content">{content}</div>
         </div>
         <div className="card-action">
-          <span className="thumb">
-            <LikeOutlined />
-            {views}
-          </span>
+          <button className="thumb">
+            <HeartTwoTone twoToneColor="#eb2f96" />
+            <span style={{ marginLeft: "0.5rem" }}>{views}</span>
+          </button>
           <span>{createdAt}</span>
           <span>{tags}</span>
         </div>
