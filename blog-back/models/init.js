@@ -1,4 +1,5 @@
 require("./blog");
+require("./user");
 const sequelize = require("./db");
 
 //initialize models at once
