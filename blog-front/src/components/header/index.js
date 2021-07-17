@@ -10,7 +10,9 @@ export default class Header extends Component {
       <div className="header">
         <ul className="header-nav">
           <li>
-            <Link to="/home/">Liang'blog | Tech blogs</Link>
+            <Link to="/home/">
+              <p style={{ color: "rgb(0, 102, 255)" }}>Liang's blog</p>
+            </Link>
           </li>
           <li>
             <Link to="/home/">Home</Link>

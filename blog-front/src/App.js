@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/home";
 import Map from "./pages/map";
-
+import Blog from "./pages/blog";
 export default function App() {
   return (
     <div className="clear-fix">
@@ -13,10 +13,9 @@ export default function App() {
       <Switch>
         <Route path="/map" component={Map} />
         <Route path="/home/" component={Home} />
-
+        <Route path="/blog/:id" component={Blog} />
         <Redirect to="/home/" />
       </Switch>
-      <Footer />
     </div>
   );
 }

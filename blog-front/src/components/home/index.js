@@ -19,7 +19,6 @@ export default class Home extends Component {
             <Route path="/home/message" component={Message} />
             <Route path="/home/login" component={Login} />
             <Route path="/home/" component={Blogs} />
-
             <Route path="/notfound" component={Notfound} />
             <Redirect to="/notfound" />
           </Switch>
