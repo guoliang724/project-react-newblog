@@ -3,18 +3,19 @@ const app = express();
 const path = require("path");
 const blog = require("./routers/blog");
 const login = require("./routers/user");
+const upload = require("./routers/upload");
 const errorHandler = require("./middleware/errorHandler");
 const cookieParser = require("cookie-parser");
 require("./models/init");
 
-const staticPath = path.resolve(__dirname, "static");
+const staticPath = path.resolve(__dirname, "public");
 app.use(express.static(staticPath));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use("/blog", blog);
 app.use("/login", login);
-
+app.use("/upload", upload);
 //handle error
 app.use(errorHandler);
 app.listen(5000, () => {

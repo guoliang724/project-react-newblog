@@ -4,6 +4,7 @@ const Blog = require("../models/blog");
 //get blog lists
 router.get("/list", async (req, res) => {
   var blogs = await Blog.findAll();
+
   res.send({
     status: 1,
     data: blogs,
