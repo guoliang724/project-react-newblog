@@ -5,6 +5,7 @@
     box-shadow: inset 0px -1px 1px rgb(0 0 0 / 30%);
     padding: 2rem;
     font-size: 1.6rem;
+    height: 30rem;
 }
 .loginButton{
     display: block;

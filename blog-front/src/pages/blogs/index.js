@@ -67,11 +67,9 @@ export default function Blogs() {
           setblogSpin(false);
           return;
         } //reach to the bottom, no more page
-        setTimeout(() => {
-          console.log(blogs);
-          setblogList([...blogList, ...blogs]);
-          setblogSpin(false);
-        }, 2000);
+
+        setblogList([...blogList, ...blogs]);
+        setblogSpin(false);
       }
     })();
   }, [page]);
@@ -80,7 +78,7 @@ export default function Blogs() {
     <div className="blog-area" ref={scrollRaf}>
       <div className="everyday">
         <Divider orientation="left">
-          <Tag color="#87d068">Daily Sentence:</Tag>
+          <Tag color="#06f">Daily Sentence:</Tag>
         </Divider>
         <Spin spinning={spin} className="forSpinning" />
         <p>{dailyContent}</p>
@@ -113,7 +111,6 @@ export default function Blogs() {
           className="nextButton"
           onClick={() => {
             setpage(page + 1);
-            console.log("button-page", page);
           }}
         >
           <DownCircleTwoTone

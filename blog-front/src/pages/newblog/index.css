@@ -1,0 +1,15 @@
+
+  .newblog-table{
+      width: 80%;
+      margin: 2rem auto;
+     
+  }
+  .editor{
+   
+      margin: 1rem auto;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }

@@ -4,14 +4,15 @@ import "./index.css";
 import { Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { getUserInfo } from "../../api/request";
+
 const { Item } = Form;
 function Login(props) {
   const formRef = useRef();
   const onFinish = async (values) => {
     const { username, password } = values;
-    console.log(username, password);
+
     var result = await getUserInfo(username, password);
-    console.log(result);
+
     if (result.data.status === 1) {
       message.success("login success");
       props.history.push("/home");

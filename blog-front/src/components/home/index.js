@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
+import { Button } from "antd";
 import RandomTags from "../../pages/randomtags";
 import Hot from "../../pages/hot";
 import About from "../../pages/about";
@@ -13,6 +14,15 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container clearfix">
+        <Button
+          type="primary"
+          className="create-button"
+          onClick={() => {
+            this.props.history.push("/newblog");
+          }}
+        >
+          new blog
+        </Button>
         <div className="content-left ">
           <Switch>
             <Route path="/home/about" component={About} />

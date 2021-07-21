@@ -1,13 +1,14 @@
 .hot{
     margin-top: 2rem;
-    background: #bae7ff;
+    background:white;
     border-radius: 1rem;
     padding: 1rem 3rem;
     font-size: 1.6rem;
    
 }
 .hot .hot-title{
-    border-bottom: 1px solid rgba(0,0,0,0.3);
+
+    color: #eb2f96;
 }
 .hot .hot-content{
     margin-top: 1rem    ;

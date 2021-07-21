@@ -1,8 +1,7 @@
 .header {
   width: 100%;
   height: 5rem;
-  background-image: linear-gradient(to right, #e6f7ff, #91d5ff);
-  color: white;
+  background-image:white;
   font-size: 2.1rem;
   display: flex;
   justify-content: space-between;
@@ -12,11 +11,12 @@
   display: flex;
 }
 .header-nav li {
-  margin-right: 2rem;
+  font-size: 1.9rem;
+  margin-right: 1.5rem;
   line-height: 5rem;
 }
 .header-nav li a {
-  color: inherit;
+  color: #8590a6;
 }
 
 .header-nav:first-child {
@@ -29,6 +29,9 @@
   margin-right: 15rem;
 }
 
-.ant-input-group-addon button.ant-btn-primary.ant-input-search-button {
-  background: #afd275;
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
+  background: #06f;
+  border-radius: 2rem;
 }
+
+

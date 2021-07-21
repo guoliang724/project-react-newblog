@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/home";
 import Map from "./pages/map";
 import Blog from "./pages/blog";
+import NewBlog from "./pages/newblog";
 export default function App() {
   return (
     <div className="clear-fix">
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/map" component={Map} />
         <Route path="/home/" component={Home} />
         <Route path="/blog/:id" component={Blog} />
+        <Route path="/newblog" component={NewBlog} />
         <Redirect to="/home/" />
       </Switch>
     </div>

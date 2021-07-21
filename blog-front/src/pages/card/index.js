@@ -1,38 +1,38 @@
 import { Card, Avatar, h2 } from "antd";
 import "./index.css";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { HeartTwoTone } from "@ant-design/icons";
 
 export default class BlogCard extends Component {
   state = {
-    imgUrl:
-      "https://pic3.zhimg.com/v2-359aebda1a8d0c6f798a670a47db7c26_400x224.png",
     readMore: true,
   };
   componentDidMount = () => {};
   render() {
-    var { title, views, content, createdAt, tags, id } = this.props.blog;
+    var { title, views, content, createdAt, tags, id, img } = this.props.blog;
     var { readMore } = this.state;
-    console.log("blog", this.props.blog);
-    console.log("readmore", readMore);
+
     if (readMore) {
       return (
         <div className="blog-card">
-          <Link
+          <NavLink
             to={{
               pathname: `/blog/${id}`,
               state: this.props.blog,
             }}
           >
             <div className="card-title">{title}</div>
-          </Link>
+          </NavLink>
           <div className="card-content">
             <div className="card-img">
-              <img src={this.state.imgUrl} alt="" />
+              <img src={img} alt="" />
             </div>
             <div className="card-text">
-              <p className="card-text-para">{content}</p>
+              <div
+                className="card-text-para"
+                dangerouslySetInnerHTML={{ __html: content }}
+              ></div>
               <button
                 className="card-text-button"
                 onClick={() => {
@@ -61,7 +61,7 @@ export default class BlogCard extends Component {
           <div className="card-title">{title}</div>
           <div className="card-content">
             <div className="card-text">
-              <p>{content}</p>
+              <p dangerouslySetInnerHTML={{ __html: content }}></p>
               <button
                 className="card-text-button"
                 onClick={() => {

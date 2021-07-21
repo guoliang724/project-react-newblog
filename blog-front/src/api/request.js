@@ -13,11 +13,15 @@ export function getBlogListWithPage(page) {
 
 //get the bloglist
 export function getBlogList() {
-  console.log("getbloglist");
   return ajax("/blog/list");
 }
 
 //vertify username and password
 export function getUserInfo(username, password) {
   return ajax("/login", { username, password }, "post");
+}
+
+//create a new blog
+export function createNewBlog(title, content, tags, img) {
+  return ajax("/blog/new", { title, content, tags, img }, "post");
 }

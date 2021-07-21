@@ -67,3 +67,52 @@
     color: #8590a6;
     margin-right: 2rem;
 }
+
+.card-text{
+    width: 100%;
+}
+/* table 样式 */
+.card-text table {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+  }
+  .card-text table td,
+  .card-text table th {
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 3px 5px;
+  }
+  .card-text  table th {
+    border-bottom: 2px solid #ccc;
+    text-align: center;
+  }
+  
+  /* blockquote 样式 */
+  .card-text blockquote {
+    display: block;
+    border-left: 8px solid #d0e5f2;
+    padding: 5px 10px;
+    margin: 10px 0;
+    line-height: 1.4;
+    font-size: 100%;
+    background-color: #f1f1f1;
+  }
+  
+  /* code 样式 */
+  .card-text code {
+    display: inline-block;
+    
+    color: cornflowerblue;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 0 3px;
+  }
+  .card-text  pre code {
+    display: block;
+  }
+  
+  /* ul ol 样式 */
+  .card-text ul, ol {
+    margin: 10px 0 10px 20px;
+  }
