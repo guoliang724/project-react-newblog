@@ -5,12 +5,11 @@ const authen = require("../middleware/authHandler");
 const multer = require("multer");
 
 const uploadfolder = path.resolve(__dirname, "../public/upload");
-const baseUrl = "http://localhost:5000/";
+const baseUrl = "http://localhost:5000/public/upload/";
 
 /*configuration */
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log("folder", uploadfolder);
     cb(null, uploadfolder);
   },
   filename: function (req, file, cb) {

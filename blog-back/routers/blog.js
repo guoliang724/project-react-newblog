@@ -37,9 +37,23 @@ router.get("/list:page", async (req, res) => {
 
 //get a blog with id
 router.get("/:id", async (req, res) => {
-  console.log(req.params);
-  console.log(req.query);
   res.send(JSON.stringify(req.body));
 });
 
+router.post("/new", async (req, res) => {
+  const { content, title, tags, img } = req.body;
+  const newblog = await Blog.create({
+    title,
+    content,
+    tags,
+    img,
+  });
+
+  if (newblog) {
+    res.send({
+      status: 1,
+      data: newblog,
+    });
+  }
+});
 module.exports = router;

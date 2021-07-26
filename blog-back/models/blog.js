@@ -14,7 +14,7 @@ const Blog = sequelize.define(
     },
     views: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      defaultValue: 0,
     },
     tags: {
       type: DataTypes.STRING,
@@ -28,9 +28,14 @@ const Blog = sequelize.define(
     img: {
       type: DataTypes.STRING,
     },
+    createdAt: {
+      type: DataTypes.STRING,
+      defaultValue: Date.now(),
+    },
   },
   {
     updatedAt: false,
+    createdAt: false,
   }
 );
 
