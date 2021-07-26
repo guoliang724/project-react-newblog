@@ -1,10 +1,12 @@
 import React from "react";
 import PostInfo from "../postinfo";
 import "./index.css";
+import moment from "moment";
 export default function Blog(props) {
   const { title, views, content, createdAt, tags, id } =
     props.history.location.state;
-  console.log("content", content);
+  var date = moment(createdAt).utc();
+  console.log("content", date);
   return (
     <div className="blog">
       <div className="blog-header">

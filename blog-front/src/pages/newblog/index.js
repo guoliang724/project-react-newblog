@@ -27,7 +27,7 @@ function NewBlog() {
 
     editor.config.onchange = (newHtml) => {
       setContent(newHtml);
-    };
+    };  
     /**一定要创建 */
     editor.create();
 
