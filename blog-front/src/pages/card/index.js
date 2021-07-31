@@ -3,16 +3,16 @@ import { NavLink } from "react-router-dom";
 import { Spin } from "antd";
 import { HeartTwoTone, CommentOutlined } from "@ant-design/icons";
 import covert from "../../utli/timecovert";
-import CommentList from "../../utli/commentList";
+import CommentCom from "../../components/comment";
 import "./index.css";
-import InputComment from "../inputcomment";
 
 export default function BlogCard(props) {
   const [readMore, setReadMore] = useState(true);
   const [commentMore, setCommentMore] = useState(false);
-  const [loading, setloading] = useState(false);
 
+  const [lists, setlists] = useState(props.list);
   var { id, title, views, content, createdAt, tags, img } = props.blog;
+  var { list, handleAddComment } = props;
 
   var date = covert(createdAt);
   var wrapup = readMore ? (
@@ -50,12 +50,11 @@ export default function BlogCard(props) {
       </div>
     </div>
   );
-  var list = CommentList(id);
-  var commentsNumber = list.props.dataSource.length;
-  var commentsMore = commentMore ? list : "";
-  const handleFold = (value) => {
-    setloading(value);
-  };
+
+  //initial the lists value
+  useEffect(() => {
+    setlists(list);
+  }, [list]);
   return (
     <div className="blog-card">
       <NavLink
@@ -81,22 +80,17 @@ export default function BlogCard(props) {
         >
           <CommentOutlined />
           <span style={{ marginLeft: 3 }}>
-            {commentMore ? "Wrap Up" : `${commentsNumber} Comments`}
+            {commentMore ? "Wrap Up" : `${lists.length} Comments`}
           </span>
         </button>
       </div>
-      <Spin spinning={loading}>{commentsMore}</Spin>
-
-      {commentMore ? (
-        <InputComment
-          toAuthor="guoliang"
-          comment_id={0}
+      <div style={{ display: commentMore ? "block" : "none" }}>
+        <CommentCom
+          lists={lists}
+          handleAddComment={handleAddComment}
           article_id={id}
-          handleFold={handleFold}
-        ></InputComment>
-      ) : (
-        ""
-      )}
+        />
+      </div>
     </div>
   );
 }

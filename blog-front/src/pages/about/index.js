@@ -7,7 +7,6 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { List } from "antd/lib/form/Form";
-import CommentList from "../../components/comment";
 
 const { Meta } = Card;
 export default function About() {
@@ -34,9 +33,7 @@ export default function About() {
           </Skeleton>
         </Card>
       </div>
-      <div className="comments">
-        <CommentList></CommentList>
-      </div>
+      <div className="comments"></div>
     </div>
   );
 }

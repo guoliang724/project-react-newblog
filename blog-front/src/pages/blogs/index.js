@@ -6,6 +6,7 @@ import {
   getSentence,
   getBlogList,
   getBlogListWithPage,
+  getComments,
 } from "../../api/request";
 import {
   DownCircleTwoTone,
@@ -36,6 +37,8 @@ export default function Blogs() {
   //nodata indicator
   const [noData, setnoData] = useState(false);
 
+  //comments lists
+  const [commentList, setCommentList] = useState([]);
   //daily update
   useEffect(() => {
     async function updateEachHour() {
@@ -53,7 +56,7 @@ export default function Blogs() {
     return clearInterval(timer);
   }, []);
 
-  //get blog list information
+  //get blog list information with page
   useEffect(() => {
     (async () => {
       setblogSpin(true);
@@ -74,6 +77,18 @@ export default function Blogs() {
     })();
   }, [page]);
 
+  //get blog comments
+  useEffect(() => {
+    (async () => {
+      var result = await getComments();
+      setCommentList(result.data.data);
+    })();
+  }, []);
+
+  const handleAddComment = (value) => {
+    setCommentList([...commentList, value]);
+  };
+
   return (
     <div className="blog-area" ref={scrollRaf}>
       <div className="everyday">
@@ -87,9 +102,20 @@ export default function Blogs() {
         </div>
       </div>
       <div className="card-list">
-        {blogList.map((blog, index) => (
-          <BlogCard key={index} blog={blog}></BlogCard>
-        ))}
+        {blogList.map((blog, index) => {
+          var list =
+            commentList &&
+            commentList.filter((item) => item.article_id === blog.id);
+          console.log("list", list);
+          return (
+            <BlogCard
+              key={index}
+              blog={blog}
+              list={list}
+              handleAddComment={handleAddComment}
+            ></BlogCard>
+          );
+        })}
 
         <Spin size="large" className="loading" spinning={blogSpin} />
         {noData ? (

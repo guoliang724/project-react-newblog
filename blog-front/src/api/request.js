@@ -32,12 +32,6 @@ export function getUserInfo(username, password) {
 export function getComments(article_id) {
   return ajax("/comment", { article_id }, "post");
 }
-export function addComments(author, content, article_id, comment_id) {
-  // the comment is for the article
-  if (article_id) {
-    return ajax("/comment/add", { author, content, article_id }, "post");
-  } else {
-    // the comment is for one the comment of the article
-    return ajax("/comment/subadd", { author, content, comment_id }, "post");
-  }
+export function addComments(author, content, article_id) {
+  return ajax("/comment/add", { author, content, article_id }, "post");
 }

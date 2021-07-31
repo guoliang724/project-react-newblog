@@ -9,21 +9,23 @@ const { Item } = Form;
 export default function InputComment(props) {
   const [form1] = Form.useForm();
   const [value, setvalue] = useState("");
-  const { toAuthor, comment_id, article_id, handleFold } = props;
+  const { handleAddComment, article_id } = props;
+  console.log(article_id);
   const handleChange = (e) => {
     setvalue(e.target.value);
   };
   const handleSubmit = async () => {
-    handleFold(true);
     const { name, comment } = form1.getFieldsValue();
-    //insert comment for article
-    var result = await addComments(name, comment, article_id, comment_id);
-    console.log(form1.getFieldsValue());
+    //insert comment to database
+    var result = await addComments(name, comment, article_id);
     if (result) {
+      var value = result.data.data;
+      handleAddComment && handleAddComment(value); //update comment in the lists
       message.success("success!");
-      handleFold(false);
-    } else {
-      message.warn("fail!");
+      form1.setFieldsValue({
+        name,
+        comment: "",
+      });
     }
   };
   return (
@@ -46,8 +48,8 @@ export default function InputComment(props) {
           <TextArea
             rows={1}
             onChange={handleChange}
-            placeholder={`to ${toAuthor}`}
             value={value}
+            placeholder="@who:comment"
             style={{ width: "30rem", borderRadius: "1rem" }}
           />
         </Item>

@@ -1,13 +1,15 @@
 import React from "react";
-import { Divider } from "antd";
-import CommentBox from "../../pages/commentbox";
-export default function CommentList() {
+import CommentList from "../../pages/commentlist";
+import CommentInput from "../../pages/commentinput";
+export default function CommentCom(props) {
+  var { lists, handleAddComment, article_id } = props;
   return (
     <div className="commentlist">
-      <Divider>x Replies</Divider>
-      <div className="messagebox">
-        <CommentBox></CommentBox>
-      </div>
+      <CommentList lists={lists} />
+      <CommentInput
+        handleAddComment={handleAddComment}
+        article_id={article_id}
+      />
     </div>
   );
 }
