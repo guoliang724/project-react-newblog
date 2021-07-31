@@ -21,19 +21,9 @@ const Comment = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    children: {
-      type: DataTypes.TEXT,
-
-      get() {
-        return JSON.parse(this.getDataValue("children"));
-      },
-      set(val) {
-        return this.setDataValue("children", JSON.stringify(val));
-      },
-    },
     createdAt: {
       type: DataTypes.STRING,
-      default: Date.now(),
+      defaultValue: `${Date.now()}`,
     },
   },
   {
