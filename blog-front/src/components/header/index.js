@@ -32,9 +32,7 @@ export default class Header extends Component {
           <li>
             <Link to="/home/about">About</Link>
           </li>
-          <li>
-            <Link to="/home/message">Message</Link>
-          </li>
+
           <li>
             <Link to="/home/login">Login</Link>
           </li>

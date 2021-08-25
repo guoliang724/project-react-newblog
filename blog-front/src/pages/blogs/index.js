@@ -5,6 +5,7 @@ import "./index.css";
 import {
   getSentence,
   getBlogList,
+  getBlogwithTag,
   getBlogListWithPage,
   getComments,
 } from "../../api/request";
@@ -16,7 +17,7 @@ import {
 
 setTwoToneColor("#06f");
 
-export default function Blogs() {
+export default function Blogs(props) {
   const scrollRaf = useRef();
   //daily content
   const [dailyContent, setDaliyContent] = useState();
@@ -59,6 +60,11 @@ export default function Blogs() {
   //get blog list information with page
   useEffect(() => {
     (async () => {
+      if (props.tag) {
+        const result = await getBlogwithTag(props.tag);
+        setblogList(result.data.data);
+        return;
+      }
       setblogSpin(true);
       var result = await getBlogListWithPage(page);
       //var result = await getBlogList();
@@ -75,7 +81,7 @@ export default function Blogs() {
         setblogSpin(false);
       }
     })();
-  }, [page]);
+  }, [page, props.tag]);
 
   //get blog comments
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Spin } from "antd";
+import { Tag } from "antd";
 import { HeartTwoTone, CommentOutlined } from "@ant-design/icons";
 import covert from "../../utli/timecovert";
 import CommentCom from "../../components/comment";
@@ -95,7 +95,7 @@ export default function BlogCard(props) {
               setclicked(true);
             }}
           >
-            <HeartTwoTone twoToneColor="blue" />
+            <HeartTwoTone twoToneColor="#1890ff" />
             <span style={{ marginLeft: "0.5rem" }}>{blogLiks}</span>
           </button>
         ) : (
@@ -112,7 +112,9 @@ export default function BlogCard(props) {
           </button>
         )}
         <span>{date}</span>
-        <span>{tags}</span>
+        <span>
+          <Tag color="#bae7ff"> {tags}</Tag>
+        </span>
         <button
           onClick={() => {
             setCommentMore(!commentMore);
@@ -141,10 +143,8 @@ function onlyShowText(html) {
   var blockString1 = blackList.map((item) => `(<${item})`).join("|");
 
   var reg = new RegExp(blockString1, "g");
-  //console.log(reg);
-  var newHtml = html.replace(reg, (a, b, c) => {
-    console.log("a", a);
 
+  var newHtml = html.replace(reg, (a, b, c) => {
     return a + ` style="display:none" `;
   });
   return newHtml;

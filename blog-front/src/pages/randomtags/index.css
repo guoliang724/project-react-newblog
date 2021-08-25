@@ -2,10 +2,18 @@
     border-radius: 0.5rem;
     background-color: white;
     box-shadow: inset 0px -1px 1px  rgba(0,0,0,0.3);
-    padding: 2rem;
+    padding: 2rem 2rem 0rem 2rem;
     font-size: 1.6rem;
 }
 .randomtag .card-title{
     color: rgb(0, 102, 255);
     margin-bottom: 1rem;
+}
+.randomtag .card-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+.randomtag .taglist{
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
 }

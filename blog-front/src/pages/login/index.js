@@ -4,7 +4,7 @@ import "./index.css";
 import { Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { getUserInfo } from "../../api/request";
-
+import { setUser } from "../../utli/storage";
 const { Item } = Form;
 function Login(props) {
   const formRef = useRef();
@@ -14,11 +14,13 @@ function Login(props) {
     var result = await getUserInfo(username, password);
 
     if (result.data.status === 1) {
+      console.log("data", result.data.data);
+      setUser("token", result.data.data);
       message.success("login success");
+
       props.history.push("/home");
     } else {
-      message.warn("sorry, you are not verified.");
-      props.history.push("/home");
+      message.warn("sorry, you are not verified.Please try again");
     }
   };
   return (

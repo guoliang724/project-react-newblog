@@ -27,7 +27,15 @@ export function createNewBlog(title, content, tags, img) {
 export function addLikes(id, likes) {
   return ajax("/blog/likes/add", { id, likes }, "post");
 }
+//get tags
+export function getTags() {
+  return ajax("/blog/taglist");
+}
 
+//get blogs with tag
+export function getBlogwithTag(tag) {
+  return ajax("/blog/withtag", { tag }, "post");
+}
 /*--------------vertify username and password----------------------- */
 
 export function getUserInfo(username, password) {
