@@ -35,11 +35,7 @@ router.get("/list:page", async (req, res) => {
   }
 });
 
-//get a blog with id
-router.get("/:id", async (req, res) => {
-  res.send(JSON.stringify(req.body));
-});
-
+//create a new blog
 router.post("/new", async (req, res) => {
   const { content, title, tags, img } = req.body;
   const newblog = await Blog.create({
@@ -56,4 +52,55 @@ router.post("/new", async (req, res) => {
     });
   }
 });
+
+//add a like on one blog
+router.post("/likes/add", async (req, res) => {
+  const { id, likes } = req.body;
+  const result = await Blog.update(
+    { likes },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+
+  if (result) {
+    res.send({
+      status: 1,
+      data: result,
+    });
+  }
+});
+
+//return tags list
+router.get("/taglist", async (req, res) => {
+  var result = await Blog.findAll({ attributes: ["tags"] });
+  if (result) {
+    result = result.map((item) => item["tags"]);
+  }
+  res.send(result);
+});
+
+//get a blog with tag
+router.post("/withtag", async (req, res) => {
+  const { tag } = req.body;
+  const result = await Blog.findAll({
+    where: {
+      tags: tag,
+    },
+  });
+  if (result) {
+    res.send({
+      status: 1,
+      data: result,
+    });
+  }
+});
+
+//get a blog with id
+router.get("/:id", async (req, res) => {
+  res.send(JSON.stringify(req.body));
+});
+
 module.exports = router;

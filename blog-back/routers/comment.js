@@ -4,7 +4,7 @@ const router = express.Router();
 const Comment = require("../models/comment");
 const getRandomPic = require("../utlis/getRandomPic");
 
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
   var result = await Comment.findAll();
   if (result) {
     res.send({

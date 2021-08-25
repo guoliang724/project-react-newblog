@@ -29,6 +29,7 @@ var uploadSingle = upload.single("pic");
 router.post("/", (req, res) => {
   uploadSingle(req, res, async (err) => {
     if (err) {
+      console.log(err);
       return res.send({
         status: 0,
         msg: "Upload File Failed!",

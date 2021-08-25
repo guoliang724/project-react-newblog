@@ -1,6 +1,6 @@
 const sequelize = require("./db");
 const { DataTypes } = require("sequelize");
-
+const moment = require("moment");
 const getRandomPic = require("../utlis/getRandomPic");
 
 const Comment = sequelize.define(
@@ -23,7 +23,7 @@ const Comment = sequelize.define(
     },
     createdAt: {
       type: DataTypes.STRING,
-      defaultValue: `${Date.now()}`,
+      defaultValue: moment().valueOf(),
     },
   },
   {
