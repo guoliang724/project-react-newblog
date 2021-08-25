@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import E from "wangeditor";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import "./index.css";
 import Avatar from "../upload";
 import { createNewBlog } from "../../api/request";
+import { withRouter } from "react-router-dom";
 const { Item } = Form;
 
 let editor = null;
-function NewBlog() {
+function NewBlog(props) {
   const [form1] = Form.useForm();
   const [content, setContent] = useState("");
   const [imgUrl, setimgUrl] = useState("");
@@ -16,18 +17,33 @@ function NewBlog() {
   };
   const handleClick = async () => {
     var { title, img, tags } = form1.getFieldsValue();
-    console.log("list", title, content, tags, img);
+
     var result = await createNewBlog(title, content, tags, img);
-    console.log("result", result);
+    if (result) {
+      message.success("add success!");
+      props.history.push("/");
+    }
   };
 
   useEffect(() => {
     // 注：class写法需要在componentDidMount 创建编辑器
     editor = new E(document.querySelector(".editor"));
+    editor.config.uploadImgServer = "/upload";
+    editor.config.uploadFileName = "pic";
+    editor.config.uploadImgHooks = {
+      // 图片上传并返回了结果，想要自己把图片插入到编辑器中
+      // 例如服务器端返回的不是 { errno: 0, data: [...] } 这种格式，可使用 customInsert
+      customInsert: function (insertImgFn, result) {
+        // result 即服务端返回的接口
+        console.log("customInsert", result);
 
+        // insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
+        insertImgFn(result.data.url);
+      },
+    };
     editor.config.onchange = (newHtml) => {
       setContent(newHtml);
-    };  
+    };
     /**一定要创建 */
     editor.create();
 
@@ -83,4 +99,4 @@ function NewBlog() {
   );
 }
 
-export default NewBlog;
+export default withRouter(NewBlog);

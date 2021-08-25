@@ -4,6 +4,7 @@ import { Spin } from "antd";
 import { HeartTwoTone, CommentOutlined } from "@ant-design/icons";
 import covert from "../../utli/timecovert";
 import CommentCom from "../../components/comment";
+import { addLikes } from "../../api/request";
 import "./index.css";
 
 export default function BlogCard(props) {
@@ -11,10 +12,15 @@ export default function BlogCard(props) {
   const [commentMore, setCommentMore] = useState(false);
 
   const [lists, setlists] = useState(props.list);
-  var { id, title, views, content, createdAt, tags, img } = props.blog;
+  var { id, title, views, content, createdAt, tags, img, likes } = props.blog;
   var { list, handleAddComment } = props;
 
+  var newHtml = onlyShowText(content);
+  //handle likes
+  const [blogLiks, setblogLikes] = useState();
+  const [clicked, setclicked] = useState(false);
   var date = covert(createdAt);
+
   var wrapup = readMore ? (
     <div className="card-content">
       <div className="card-img">
@@ -23,7 +29,7 @@ export default function BlogCard(props) {
       <div className="card-text">
         <div
           className="card-text-para"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: newHtml }}
         ></div>
         <button
           className="card-text-button"
@@ -55,6 +61,19 @@ export default function BlogCard(props) {
   useEffect(() => {
     setlists(list);
   }, [list]);
+
+  //hanle likes
+  useEffect(() => {
+    console.log("ruuning");
+    setblogLikes(likes);
+  }, [likes]);
+
+  const handleLikes = async (id, likes) => {
+    const result = await addLikes(id, likes);
+    if (result) {
+      console.log("add success");
+    }
+  };
   return (
     <div className="blog-card">
       <NavLink
@@ -67,10 +86,31 @@ export default function BlogCard(props) {
       </NavLink>
       {wrapup}
       <div className="card-action">
-        <button className="thumb">
-          <HeartTwoTone twoToneColor="#eb2f96" />
-          <span style={{ marginLeft: "0.5rem" }}>{views}</span>
-        </button>
+        {!clicked ? (
+          <button
+            className="thumb"
+            onClick={() => {
+              handleLikes(id, likes + 1);
+              setblogLikes(blogLiks + 1);
+              setclicked(true);
+            }}
+          >
+            <HeartTwoTone twoToneColor="blue" />
+            <span style={{ marginLeft: "0.5rem" }}>{blogLiks}</span>
+          </button>
+        ) : (
+          <button
+            className="thumb"
+            onClick={() => {
+              handleLikes(id, likes);
+              setblogLikes(blogLiks - 1);
+              setclicked(false);
+            }}
+          >
+            <HeartTwoTone twoToneColor="#eb2f96" />
+            <span style={{ marginLeft: "0.5rem" }}>{blogLiks}</span>
+          </button>
+        )}
         <span>{date}</span>
         <span>{tags}</span>
         <button
@@ -93,4 +133,19 @@ export default function BlogCard(props) {
       </div>
     </div>
   );
+}
+
+function onlyShowText(html) {
+  var blackList = ["img", "video", "table", "code"];
+
+  var blockString1 = blackList.map((item) => `(<${item})`).join("|");
+
+  var reg = new RegExp(blockString1, "g");
+  //console.log(reg);
+  var newHtml = html.replace(reg, (a, b, c) => {
+    console.log("a", a);
+
+    return a + ` style="display:none" `;
+  });
+  return newHtml;
 }

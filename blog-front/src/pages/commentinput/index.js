@@ -10,7 +10,7 @@ export default function InputComment(props) {
   const [form1] = Form.useForm();
   const [value, setvalue] = useState("");
   const { handleAddComment, article_id } = props;
-  console.log(article_id);
+
   const handleChange = (e) => {
     setvalue(e.target.value);
   };

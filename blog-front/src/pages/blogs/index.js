@@ -106,7 +106,7 @@ export default function Blogs() {
           var list =
             commentList &&
             commentList.filter((item) => item.article_id === blog.id);
-          console.log("list", list);
+
           return (
             <BlogCard
               key={index}

@@ -4,7 +4,7 @@ import { Button } from "antd";
 import RandomTags from "../../pages/randomtags";
 import Hot from "../../pages/hot";
 import About from "../../pages/about";
-import NewComments from "../../pages/newcomments";
+
 import { Switch, Route, Redirect } from "react-router-dom";
 import Blogs from "../../pages/blogs";
 import Message from "../../pages/message";
@@ -36,7 +36,6 @@ export default class Home extends Component {
         <div className="content-right ">
           <RandomTags></RandomTags>
           <Hot></Hot>
-          <NewComments></NewComments>
         </div>
       </div>
     );

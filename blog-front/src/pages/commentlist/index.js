@@ -3,13 +3,13 @@ import moment from "moment";
 import { List, Comment, Tooltip } from "antd";
 moment.locale();
 export default function CommentList({ lists }) {
-  console.log("here", lists);
   var data = lists.map((item, index) => {
     var intCreatedAt = parseInt(item.createdAt);
+
     var date = moment(intCreatedAt).format("YYYY-MM-DD HH:mm:ss");
+
     var fromnow = moment(date).fromNow();
-    console.log("date", date);
-    console.log("fromnow", fromnow);
+
     return {
       author: item.author,
       avatar: item.avatar,
@@ -36,6 +36,7 @@ export default function CommentList({ lists }) {
               avatar={item.avatar}
               content={item.content}
               datetime={item.datetime}
+              key={item.id}
             />
           </li>
         )}
