@@ -5,6 +5,7 @@ import { HeartTwoTone, CommentOutlined } from "@ant-design/icons";
 import covert from "../../utli/timecovert";
 import CommentCom from "../../components/comment";
 import { addLikes } from "../../api/request";
+import addclick from "../../utli/addclick";
 import "./index.css";
 
 export default function BlogCard(props) {
@@ -82,7 +83,14 @@ export default function BlogCard(props) {
           state: props.blog,
         }}
       >
-        <div className="card-title">{title}</div>
+        <div
+          className="card-title"
+          onClick={() => {
+            addclick(id);
+          }}
+        >
+          {title}
+        </div>
       </NavLink>
       {wrapup}
       <div className="card-action">

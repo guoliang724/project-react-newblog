@@ -36,6 +36,12 @@ export function getTags() {
 export function getBlogwithTag(tag) {
   return ajax("/blog/withtag", { tag }, "post");
 }
+
+//add one view on one blog
+export function addOneView(id) {
+  return ajax("/blog/addview", { id }, "post");
+}
+
 /*--------------vertify username and password----------------------- */
 
 export function getUserInfo(username, password) {

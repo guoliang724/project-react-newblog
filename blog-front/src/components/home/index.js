@@ -6,7 +6,7 @@ import Hot from "../../pages/hot";
 import About from "../../pages/about";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Blogs from "../../pages/blogs";
-import Message from "../../pages/message";
+
 import Notfound from "../../pages/notfound";
 import Login from "../../pages/login";
 import { ctx } from "../../pages/context";

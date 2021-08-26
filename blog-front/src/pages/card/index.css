@@ -101,18 +101,22 @@
   
   /* code 样式 */
   .card-text code {
-    display: inline-block;
-    
+    width: 100%;
+    font-size: 1.6rem;
+    background-color: #f5f2f0;
+    border-radius: 10px;
+    padding: 30px 20px 20px;
     color: cornflowerblue;
-    background-color: #f1f1f1;
-    border-radius: 3px;
-    padding: 3px 5px;
-    margin: 0 3px;
   }
   .card-text  pre code {
     display: block;
   }
-  
+  /* img 样式*/
+  .card-text img {
+    height:300px ;
+    width: 100%;
+    object-fit: scale-down;
+  }
   /* ul ol 样式 */
   .card-text ul, ol {
     margin: 10px 0 10px 20px;

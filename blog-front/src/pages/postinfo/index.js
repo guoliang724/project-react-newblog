@@ -7,7 +7,7 @@ export default function PostInfo(props) {
       <span>{"·"}</span>
       <span>{`${props.readingTime} min read`}</span>
       <span>{"·"}</span>
-      <span>{`5 views`}</span>
+      <span>{`${props.views} views`}</span>
       <span>{"·"}</span>
       <span>{props.tags}</span>
     </div>
