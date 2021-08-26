@@ -98,6 +98,15 @@ router.post("/withtag", async (req, res) => {
   }
 });
 
+//add one view on a blog
+router.post("/addview", async (req, res) => {
+  const { id } = req.body;
+  const blog = await Blog.findOne({ where: { id } });
+  const result = blog.increment("views");
+  console.log(result);
+  res.send("good");
+});
+
 //get a blog with id
 router.get("/:id", async (req, res) => {
   res.send(JSON.stringify(req.body));
