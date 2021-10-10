@@ -29,9 +29,6 @@ export default class Header extends Component {
           <li>
             <Link to="/map">Map</Link>
           </li>
-          <li>
-            <Link to="/home/about">About</Link>
-          </li>
 
           <li>
             <Link to="/home/login">Login</Link>

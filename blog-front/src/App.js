@@ -7,23 +7,22 @@ import Home from "./components/home";
 import Map from "./pages/map";
 import Blog from "./pages/blog";
 import NewBlog from "./pages/newblog";
-import "./app.css"
-
+import "./app.css";
 
 export default function App() {
   return (
-    <div>
-      <Header className="header"/>
+    <div className="app">
+      <Header />
       <div className="body">
-      <Switch>
-        <Route path="/map" component={Map} />
-        <Route path="/home/" component={Home} />
-        <Route path="/blog/:id" component={Blog} />
-        <Route path="/newblog" component={NewBlog} />
-        <Redirect to="/home/" />
-      </Switch>
+        <Switch>
+          <Route path="/map" component={Map} />
+          <Route path="/home/" component={Home} />
+          <Route path="/blog/:id" component={Blog} />
+          <Route path="/newblog" component={NewBlog} />
+          <Redirect to="/home/" />
+        </Switch>
       </div>
-      <Footer className="footer"/>
+      <Footer />
     </div>
   );
 }

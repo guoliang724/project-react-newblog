@@ -3,6 +3,8 @@
    border-radius: 1rem;
    padding: 2.5rem;
    padding-top: 0.6rem;
+   height: auto;
+   min-height: 80vh;
  }
   .everyday {
     height: 13rem;

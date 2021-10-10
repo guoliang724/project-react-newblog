@@ -1,5 +1,9 @@
+.footer{
+    display: flex;
+    justify-content: center;   
+    align-items: center;
 
-span{
-    display: inline-block;
+}
+.footer span{
     margin-left: 30px;
 }

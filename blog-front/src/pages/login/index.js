@@ -24,12 +24,13 @@ function Login(props) {
     }
   };
   return (
-    <div className="loginForm">
+    <div className="formContainer">
       <Form
         ref={formRef}
         labelCol={{ span: 6, offset: 1 }}
         wrapperCol={{ span: 10 }}
         onFinish={onFinish}
+        className="loginForm"
       >
         <Item
           label="Username"

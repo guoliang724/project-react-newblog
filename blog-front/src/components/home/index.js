@@ -3,7 +3,7 @@ import "./index.css";
 import { Button } from "antd";
 import RandomTags from "../../pages/randomtags";
 import Hot from "../../pages/hot";
-import About from "../../pages/about";
+
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Blogs from "../../pages/blogs";
 
@@ -49,7 +49,6 @@ class Home extends Component {
           )}
           <div className="content-left ">
             <Switch>
-              <Route path="/home/about" component={About} />
               <Route path="/home/login" component={Login} />
               <Route
                 path="/home/"
