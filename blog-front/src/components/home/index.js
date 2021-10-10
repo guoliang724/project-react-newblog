@@ -30,7 +30,7 @@ class Home extends Component {
     var { tag } = this.state;
 
     return (
-      <div className="container clearfix">
+      <div className="container">
         <ctx.Provider
           value={{ handleAllTag: this.handleAllTag, handleTag: this.handleTag }}
         >
@@ -50,7 +50,6 @@ class Home extends Component {
           <div className="content-left ">
             <Switch>
               <Route path="/home/about" component={About} />
-
               <Route path="/home/login" component={Login} />
               <Route
                 path="/home/"

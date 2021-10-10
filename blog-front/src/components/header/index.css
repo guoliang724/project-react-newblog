@@ -1,11 +1,4 @@
-.header {
-  width: 100%;
-  height: 5rem;
-  background-image:white;
-  font-size: 2.1rem;
-  display: flex;
-  justify-content: space-between;
-}
+
 .header-nav {
   height: 100%;
   display: flex;

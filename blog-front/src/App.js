@@ -7,10 +7,14 @@ import Home from "./components/home";
 import Map from "./pages/map";
 import Blog from "./pages/blog";
 import NewBlog from "./pages/newblog";
+import "./app.css"
+
+
 export default function App() {
   return (
-    <div className="clear-fix">
-      <Header />
+    <div>
+      <Header className="header"/>
+      <div className="body">
       <Switch>
         <Route path="/map" component={Map} />
         <Route path="/home/" component={Home} />
@@ -18,6 +22,8 @@ export default function App() {
         <Route path="/newblog" component={NewBlog} />
         <Redirect to="/home/" />
       </Switch>
+      </div>
+      <Footer className="footer"/>
     </div>
   );
 }
