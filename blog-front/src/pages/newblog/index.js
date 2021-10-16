@@ -5,6 +5,9 @@ import "./index.css";
 import Avatar from "../upload";
 import { createNewBlog } from "../../api/request";
 import { withRouter } from "react-router-dom";
+import hljs from "highlight.js";
+
+
 const { Item } = Form;
 
 let editor = null;
@@ -27,7 +30,7 @@ function NewBlog(props) {
 
   useEffect(() => {
     // 注：class写法需要在componentDidMount 创建编辑器
-    editor = new E(document.querySelector(".editor"));
+    editor = new E(".editor");
     editor.config.uploadImgServer = "/upload";
     editor.config.uploadFileName = "pic";
     editor.config.uploadImgHooks = {
@@ -44,6 +47,8 @@ function NewBlog(props) {
     editor.config.onchange = (newHtml) => {
       setContent(newHtml);
     };
+    // 加高亮
+    editor.highlight = hljs;
     /**一定要创建 */
     editor.create();
 

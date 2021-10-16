@@ -52,8 +52,8 @@ div.blog{
   /* img 样式*/
   .blog-content img {
     height:300px ;
-    width: 100%;
-    object-fit: scale-down;
+    width: 300px;
+    object-fit: fill ;
   }
   /* ul ol 样式 */
   .blog-content ul, ol {

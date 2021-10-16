@@ -3,15 +3,17 @@
     margin: 0 auto;
     display: flex;
     padding: 2.5rem;
-    height: 100%;
+    height: auto;
+    min-height: 87vh;
+    flex-direction: row;
+    justify-content: center;
   }
   
   .content-left {
-   margin-left: 15rem;
     width: 50%;
   }
   .content-right {
-    margin-top: 2.5rem;
+   
     width: 25%;
   margin-left: 5rem;
 

@@ -9,20 +9,14 @@ import addclick from "../../utli/addclick";
 import "./index.css";
 
 export default function BlogCard(props) {
-  const [readMore, setReadMore] = useState(true);
-  const [commentMore, setCommentMore] = useState(false);
-
-  const [lists, setlists] = useState(props.list);
   var { id, title, views, content, createdAt, tags, img, likes } = props.blog;
-  var { list, handleAddComment } = props;
-
   var newHtml = onlyShowText(content);
-  //handle likes
+
   const [blogLiks, setblogLikes] = useState();
   const [clicked, setclicked] = useState(false);
   var date = covert(createdAt);
 
-  var wrapup = readMore ? (
+  var wrapup = (
     <div className="card-content">
       <div className="card-img">
         <img src={img} alt="" />
@@ -32,40 +26,28 @@ export default function BlogCard(props) {
           className="card-text-para"
           dangerouslySetInnerHTML={{ __html: newHtml }}
         ></div>
-        <button
-          className="card-text-button"
-          onClick={() => {
-            setReadMore(false);
+
+        <NavLink
+          to={{
+            pathname: `/blog/${id}`,
+            state: props.blog,
           }}
         >
-          Read More
-        </button>
-      </div>
-    </div>
-  ) : (
-    <div className="card-content">
-      <div className="card-text">
-        <p dangerouslySetInnerHTML={{ __html: content }}></p>
-        <button
-          className="card-text-button"
-          onClick={() => {
-            setReadMore(true);
-          }}
-        >
-          Wrap Up
-        </button>
+          <div
+            className="card-text-button"
+            onClick={() => {
+              addclick(id);
+            }}
+          >
+            Read More
+          </div>
+        </NavLink>
       </div>
     </div>
   );
 
-  //initial the lists value
-  useEffect(() => {
-    setlists(list);
-  }, [list]);
-
   //hanle likes
   useEffect(() => {
-    console.log("ruuning");
     setblogLikes(likes);
   }, [likes]);
 
@@ -123,23 +105,6 @@ export default function BlogCard(props) {
         <span>
           <Tag color="#bae7ff"> {tags}</Tag>
         </span>
-        <button
-          onClick={() => {
-            setCommentMore(!commentMore);
-          }}
-        >
-          <CommentOutlined />
-          <span style={{ marginLeft: 3 }}>
-            {commentMore ? "Wrap Up" : `${lists.length} Comments`}
-          </span>
-        </button>
-      </div>
-      <div style={{ display: commentMore ? "block" : "none" }}>
-        <CommentCom
-          lists={lists}
-          handleAddComment={handleAddComment}
-          article_id={id}
-        />
       </div>
     </div>
   );

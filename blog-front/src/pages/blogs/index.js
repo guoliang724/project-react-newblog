@@ -19,27 +19,27 @@ setTwoToneColor("#06f");
 
 export default function Blogs(props) {
   const scrollRaf = useRef();
-  //daily content
+  
   const [dailyContent, setDaliyContent] = useState();
   const [dailyauthor, setdailyauthor] = useState();
 
-  //bloglist information
+ 
   const [blogList, setblogList] = useState([]);
 
   //spinning control(daily sentence)
   const [spin, setspin] = useState(false);
 
-  //spinning control(blog list)
+
   const [blogSpin, setblogSpin] = useState(false);
 
-  //page control
+  
   const [page, setpage] = useState(1);
 
   //nodata indicator
   const [noData, setnoData] = useState(false);
 
-  //comments lists
   const [commentList, setCommentList] = useState([]);
+
   //daily update
   useEffect(() => {
     async function updateEachHour() {
@@ -106,6 +106,7 @@ export default function Blogs(props) {
         <div style={{ marginLeft: 30 }}>
           &nbsp;&nbsp;{dailyauthor ? `-- ${dailyauthor}` : ""}
         </div>
+      
       </div>
       <div className="card-list">
         {blogList.map((blog, index) => {
