@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom"
 import "antd/dist/antd.css";
 
 import { MailOutlined, PhoneOutlined } from "@ant-design/icons";
@@ -17,7 +18,7 @@ export default function App() {
     <div className="app">
       <Layout>
         <Header className="header">
-          <div>Guoliang Zhang's blog</div>
+          <div><NavLink to="/home">Guoliang Zhang's blog</NavLink></div>
           <div>LESS IS MORE</div>
           <div className="inputSearch">
             <Search

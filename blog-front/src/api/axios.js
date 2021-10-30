@@ -21,4 +21,6 @@ export function ajax(url, body = {}, method = "get") {
   }
 }
 
+
 export const url = "url";
+

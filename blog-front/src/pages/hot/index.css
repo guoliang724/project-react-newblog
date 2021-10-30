@@ -11,5 +11,16 @@
     color: #eb2f96;
 }
 .hot .hot-content{
-    margin-top: 1rem    ;
+    margin-top: 1rem;
+}
+
+.hot .hot-content > p {
+    color:#1890ff ;
+    padding-bottom: 3px;
+   border-bottom: 1px dashed #d0e5f2;
+}
+
+.hot .hot-content > p:hover {
+    cursor: pointer;
+    color:#ff182b ;
 }

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Tag } from "antd";
 import { HeartTwoTone, CommentOutlined } from "@ant-design/icons";
-import covert from "../../utli/timecovert";
-import CommentCom from "../../components/comment";
+import timeCovert from "../../utli/timecovert";
 import { addLikes } from "../../api/request";
 import addclick from "../../utli/addclick";
 import "./index.css";
@@ -14,7 +13,7 @@ export default function BlogCard(props) {
 
   const [blogLiks, setblogLikes] = useState();
   const [clicked, setclicked] = useState(false);
-  var date = covert(createdAt);
+  var date = timeCovert(createdAt);
 
   var wrapup = (
     <div className="card-content">
@@ -26,7 +25,6 @@ export default function BlogCard(props) {
           className="card-text-para"
           dangerouslySetInnerHTML={{ __html: newHtml }}
         ></div>
-
         <NavLink
           to={{
             pathname: `/blog/${id}`,
