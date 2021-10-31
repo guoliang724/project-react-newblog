@@ -3,11 +3,13 @@ import "./index.css";
 import { FireTwoTone } from "@ant-design/icons";
 import { getBlogList } from "../../api/request";
 import { withRouter } from "react-router";
+import addclick from "../../utli/addclick";
 
 const Hot = (props) => {
   const [blogs, setblogs] = useState([]);
 
   const handleJume = (blog) => {
+    addclick(blog.id); // add one view
     props.history.push(`/blog/${blog.id}`, blog);
   };
   const hotBlogsList = blogs.map((item, index) => (
@@ -25,7 +27,7 @@ const Hot = (props) => {
       const {
         data: { data: mBlogs },
       } = await getBlogList();
-      const orderedBlogs = mBlogs.sort((a, b) => a.views < b.views).slice(0, 4);
+      const orderedBlogs = mBlogs.sort((a, b) => b.views - a.views);
       setblogs(orderedBlogs);
     })();
   }, []);

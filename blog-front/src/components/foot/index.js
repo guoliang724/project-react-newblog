@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import { MailOutlined, PhoneOutlined } from "@ant-design/icons";
-export default class Footer extends Component {
+export default class Foot extends Component {
   render() {
     return (
       <div className="footer">

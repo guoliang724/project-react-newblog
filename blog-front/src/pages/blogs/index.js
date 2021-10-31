@@ -1,17 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useContext,
+} from "react";
 import { Tag, Divider, Spin, Pagination } from "antd";
 import BlogCard from "../card";
-import "./index.css";
 import { getSentence } from "../../api/request";
-import { setTwoToneColor } from "@ant-design/icons";
-import moment from "moment";
-
-setTwoToneColor("#06f");
+import { ctx } from "../context";
+import { getBlogListsByparameters } from "../../api/request";
+import "./index.css";
 
 export default function Blogs(props) {
   const scrollRaf = useRef();
-
+  const { tag, keyword } = useContext(ctx);
+  console.log("keyword", keyword);
   //spinning control(daily sentence)
   const [spin, setspin] = useState(false);
   const [dailyContent, setDaliyContent] = useState();
@@ -21,10 +26,11 @@ export default function Blogs(props) {
   const [blogSpin, setblogSpin] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [keyword, setKeyWord] = useState("");
+  const defaultPageSize = 4;
   const [total, setTotal] = useState(0);
 
   const handlePageChange = (page) => {
+    console.log("page", page);
     setCurrentPage(page);
   };
 
@@ -41,33 +47,28 @@ export default function Blogs(props) {
     updateEachHour();
   }, []);
 
-  // get blogs
-
-  //get blog list information with page
-  // useEffect(() => {
-  //   (async () => {
-  //     if (props.tag) {
-  //       const result = await getBlogwithTag(props.tag);
-  //       setblogList(result.data.data);
-  //       return;
-  //     }
-  //     setblogSpin(true);
-  //     var result = await getBlogListWithPage(page);
-  //     //var result = await getBlogList();
-  //     if (result.data.status === 1) {
-  //       //status==1 success
-  //       var blogs = result.data.data;
-  //       if (!blogs) {
-  //         setnoData(true);
-  //         setblogSpin(false);
-  //         return;
-  //       } //reach to the bottom, no more page
-
-  //       setblogList([...blogList, ...blogs]);
-  //       setblogSpin(false);
-  //     }
-  //   })();
-  // }, [page, props.tag]);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [tag]);
+  // get blogs by keyword,tag,page
+  useEffect(() => {
+    (async () => {
+      setblogSpin(true);
+      const blogs = await getBlogListsByparameters(keyword, tag, currentPage);
+      const {
+        data: { data, total },
+      } = blogs;
+      console.log("totoalPage", total);
+      if (data) {
+        setblogList(data);
+        setTotal(total);
+        setblogSpin(false);
+      } else {
+        setblogList([]);
+        setblogSpin(false);
+      }
+    })();
+  }, [keyword, tag, currentPage]);
 
   return (
     <div className="blog-area" ref={scrollRaf}>
@@ -88,10 +89,10 @@ export default function Blogs(props) {
         <Spin size="large" className="loading" spinning={blogSpin} />
       </div>
       <Pagination
-        defaultPageSize={4}
+        defaultPageSize={defaultPageSize}
         defaultCurrent={1}
         current={currentPage}
-        total={30}
+        total={total}
         onChange={handlePageChange}
       />
     </div>

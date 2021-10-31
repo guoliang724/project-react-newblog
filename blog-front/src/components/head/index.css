@@ -1,0 +1,14 @@
+.header {
+  background-color: white;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 600px;
+}
+
+.inputSearch {
+  display: flex;
+  align-items: center;
+}

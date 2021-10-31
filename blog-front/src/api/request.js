@@ -8,14 +8,14 @@ export function getSentence() {
 }
 /*------------------handle blog------------------ */
 
-//get the bloglist with page
-export function getBlogListWithPage(page) {
-  return ajax(`/blog/list${page}`);
-}
-
 //get the bloglist
 export function getBlogList() {
   return ajax("/blog/list");
+}
+
+// get the bloglist by keyword,tags,page
+export function getBlogListsByparameters(keyword = "", tag = "all", page = 1) {
+  return ajax(`/blog/list/parameter`, { keyword, tag, page }, "post");
 }
 
 //create a new blog
@@ -32,11 +32,6 @@ export function getTags() {
   return ajax("/blog/taglist");
 }
 
-//get blogs with tag
-export function getBlogwithTag(tag) {
-  return ajax("/blog/withtag", { tag }, "post");
-}
-
 //add one view on one blog
 export function addOneView(id) {
   return ajax("/blog/addview", { id }, "post");
@@ -46,13 +41,4 @@ export function addOneView(id) {
 
 export function getUserInfo(username, password) {
   return ajax("/login", { username, password }, "post");
-}
-
-/*----------------handle comments------------------------- */
-
-export function getComments() {
-  return ajax("/comment");
-}
-export function addComments(author, content, article_id) {
-  return ajax("/comment/add", { author, content, article_id }, "post");
 }

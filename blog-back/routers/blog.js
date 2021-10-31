@@ -12,9 +12,9 @@ router.get("/list", async (req, res) => {
 });
 
 // get blogs by keyword=>tag=>page
-router.get("/list/:keyword/:tag/:page", async (req, res) => {
+router.post("/list/parameter", async (req, res) => {
   const blogs = await Blog.findAll();
-  let { keyword, tag, page } = req.params;
+  let { keyword, tag, page } = req.body;
   const length = blogs.length;
   const defaultPageSize = 4;
   const totoalPage = Math.ceil(length / defaultPageSize);
@@ -22,22 +22,31 @@ router.get("/list/:keyword/:tag/:page", async (req, res) => {
     ? blogs.filter((item) => item.content.includes(keyword))
     : blogs;
 
-  const tagFilter = tag
-    ? keywordFilter.filter((item) => item.tags.includes(tag))
-    : keywordFilter;
+  const tagFilter =
+    tag !== "all"
+      ? keywordFilter.filter((item) => item.tags.includes(tag))
+      : keywordFilter;
+  const totalLength = tagFilter.length;
 
   if (page > totoalPage)
     return res.send({
-      status: 1,
+      status: 0,
       data: null,
     });
   const pageFilter = tagFilter.slice(
     (page - 1) * defaultPageSize,
     page * defaultPageSize
   );
+
+  if (pageFilter == [])
+    return res.send({
+      status: 0,
+      data: null,
+    });
   res.send({
     status: 1,
     data: pageFilter,
+    total: totalLength,
   });
 });
 
@@ -108,25 +117,10 @@ router.get("/taglist", async (req, res) => {
   var result = await Blog.findAll({ attributes: ["tags"] });
   if (result) {
     result = result.map((item) => item["tags"]);
+    result = Array.from(new Set(result));
   }
   res.send(result);
 });
-
-//get a blog with tag
-// router.post("/withtag", async (req, res) => {
-//   const { tag } = req.body;
-//   const result = await Blog.findAll({
-//     where: {
-//       tags: tag,
-//     },
-//   });
-//   if (result) {
-//     res.send({
-//       status: 1,
-//       data: result,
-//     });
-//   }
-// });
 
 //add one view on a blog
 router.post("/addview", async (req, res) => {

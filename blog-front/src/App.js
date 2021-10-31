@@ -1,53 +1,69 @@
-import React from "react";
-import {NavLink} from "react-router-dom"
-import "antd/dist/antd.css";
+import React, { useState, useEffect } from "react";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
-import { MailOutlined, PhoneOutlined } from "@ant-design/icons";
-import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/home";
 import Map from "./pages/map";
 import Blog from "./pages/blog";
 import NewBlog from "./pages/newblog";
+import Head from "./components/head";
+import Foot from "./components/foot";
+import { Layout } from "antd";
+import { ctx } from "./pages/context";
+
+import "antd/dist/antd.css";
 import "./app.css";
-import { Layout, Input } from "antd";
 
 const { Header, Content, Footer } = Layout;
-const { Search } = Input;
-export default function App() {
+
+const App = (props) => {
+  const [tag, settag] = useState("all");
+  const [keyword, setkeyword] = useState("");
+
+  //handle tag changing
+  const handleTag = (tag) => {
+    settag(tag);
+  };
+  //handle tag `all`
+  const handleAllTag = () => {
+    props.history.push("/");
+    settag("all");
+  };
+  //handle keyword
+  const handleKeyword = (keyword) => {
+    setkeyword(keyword);
+  };
+
   return (
     <div className="app">
-      <Layout>
-        <Header className="header">
-          <div><NavLink to="/home">Guoliang Zhang's blog</NavLink></div>
-          <div>LESS IS MORE</div>
-          <div className="inputSearch">
-            <Search
-              placeholder="keyword"
-              enterButton="Search"
-              bordered={false}
-              // onSearch={this.onSearch}
-            ></Search>
-          </div>
-        </Header>
-
-        <Content className="body">
-          <Switch>
-            <Route path="/map" component={Map} />
-            <Route path="/home/" component={Home} />
-            <Route path="/blog/:id" component={Blog} />
-            <Route path="/newblog" component={NewBlog} />
-            <Redirect to="/home/" />
-          </Switch>
-        </Content>
-        <Footer className="footer">
-          <div>
-            <MailOutlined /> Email:zhangguoliang@cvte.com
-          </div>
-          <div>
-            <PhoneOutlined /> Phone:15903410831
-          </div>
-        </Footer>
-      </Layout>
+      <ctx.Provider
+        value={{
+          tag,
+          keyword,
+          handleAllTag,
+          handleTag,
+          handleKeyword,
+        }}
+      >
+        <Layout>
+          <Header>
+            <Head />
+          </Header>
+          <Content className="body">
+            <Switch>
+              <Route path="/map" component={Map} />
+              <Route path="/home/" component={Home} />
+              <Route path="/blog/:id" component={Blog} />
+              <Route path="/newblog" component={NewBlog} />
+              <Redirect to="/home/" />
+            </Switch>
+          </Content>
+          <Footer>
+            <Foot />
+          </Footer>
+        </Layout>
+      </ctx.Provider>
     </div>
   );
-}
+};
+
+export default withRouter(App);

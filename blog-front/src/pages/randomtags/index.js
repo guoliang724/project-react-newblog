@@ -5,7 +5,7 @@ import { Tag } from "antd";
 import { TagsTwoTone } from "@ant-design/icons";
 import { getTags } from "../../api/request";
 export default function RandomTags() {
-  var { handleTag, handleAllTag } = useContext(ctx);
+  var { handleTag, handleAllTag, handleKeyword } = useContext(ctx);
 
   const [tags, settags] = useState([]);
   useEffect(() => {
@@ -22,6 +22,8 @@ export default function RandomTags() {
       key={index}
       color={`${RandomColor()}`}
       onClick={() => {
+        console.log("item", item);
+        handleKeyword("");
         handleTag(item);
       }}
     >
