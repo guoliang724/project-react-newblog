@@ -2,6 +2,9 @@ import React from "react";
 import PostInfo from "../postinfo";
 import "./index.css";
 import timeCovert from "../../utli/timecovert";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 export default function Blog(props) {
   const { title, views, content, createdAt, tags, id } =
@@ -24,10 +27,18 @@ export default function Blog(props) {
       </div>
       <div
         className="blog-content"
-        dangerouslySetInnerHTML={{
-          __html: content,
-        }}
-      ></div>
+        // dangerouslySetInnerHTML={{
+        //   __html: content,
+        // }}
+      >
+        <ReactMarkdown
+          children={content}
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          skipHtml={false}
+        />
+      </div>
+    
     </div>
   );
 }

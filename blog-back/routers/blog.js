@@ -83,7 +83,7 @@ router.post("/new", async (req, res) => {
     tags,
     img,
   });
-
+  
   if (newblog) {
     res.send({
       status: 1,
@@ -126,8 +126,7 @@ router.get("/taglist", async (req, res) => {
 router.post("/addview", async (req, res) => {
   const { id } = req.body;
   const blog = await Blog.findOne({ where: { id } });
-  const result = blog.increment("views");
-  console.log(result);
+  const result = await blog.increment("views");
   res.send("good");
 });
 

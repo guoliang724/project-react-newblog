@@ -7,6 +7,7 @@ const comment = require("./routers/comment");
 const upload = require("./routers/upload");
 const errorHandler = require("./middleware/errorHandler");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 require("./models/init");
 
@@ -16,6 +17,7 @@ app.use(express.static(staticPath));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+// app.use(cors());
 app.use("/blog", blog);
 app.use("/login", login);
 app.use("/upload", upload);

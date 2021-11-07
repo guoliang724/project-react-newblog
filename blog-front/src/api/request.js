@@ -1,10 +1,11 @@
 import { ajax } from "./axios";
 import axios from "axios";
-const urlApi = "http://v3.wufazhuce.com:8000/api/channel/one/0/0";
+const dailySentenceApi = "http://v3.wufazhuce.com:8000/api/channel/one/0/0";
+const baseUrl = "";
 
 //get daily sentence
 export function getSentence() {
-  return axios.get(urlApi);
+  return axios.get(dailySentenceApi);
 }
 /*------------------handle blog------------------ */
 

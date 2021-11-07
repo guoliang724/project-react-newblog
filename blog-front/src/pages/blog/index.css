@@ -17,6 +17,10 @@ div.blog{
   padding-bottom: 15px;
 }
 
+.ant-layout-content.body{
+  min-height: 650px;
+}
+
 .blog-content {
   font-size: 1.6rem;
 }

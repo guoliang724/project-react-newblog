@@ -16,7 +16,7 @@ import "./index.css";
 export default function Blogs(props) {
   const scrollRaf = useRef();
   const { tag, keyword } = useContext(ctx);
-  console.log("keyword", keyword);
+
   //spinning control(daily sentence)
   const [spin, setspin] = useState(false);
   const [dailyContent, setDaliyContent] = useState();
