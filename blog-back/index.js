@@ -18,12 +18,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 // app.use(cors());
-app.use("/blog", blog);
-app.use("/login", login);
-app.use("/upload", upload);
-app.use("/comment", comment);
+app.use("/api/blog", blog);
+app.use("/api/login", login);
+app.use("/api/upload", upload);
+app.use("/api/comment", comment);
 //handle error
 app.use(errorHandler);
-app.listen(5000, () => {
-  console.log("port:5000 server is working....");
+app.listen(6000, () => {
+  console.log("port:6000 server is working....");
 });
+
